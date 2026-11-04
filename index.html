@@ -93,6 +93,14 @@ h2{font:600 clamp(34px,6vw,56px)/1.06 var(--serif);letter-spacing:-.015em;margin
 .privacy{display:grid;gap:18px;margin-top:40px}
 @media(min-width:760px){.privacy{grid-template-columns:repeat(3,1fr);gap:32px}}
 .privacy div{border-top:1px solid var(--ink);padding-top:14px}.privacy b{font:600 20px var(--serif);display:block;margin-bottom:4px}.privacy p{margin:0;color:var(--mute)}
+.wgrid{display:grid;gap:14px;margin-top:40px}@media(min-width:640px){.wgrid{grid-template-columns:repeat(2,1fr)}}@media(min-width:1000px){.wgrid{grid-template-columns:repeat(4,1fr)}}
+.wcard{background:var(--cream2);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.wcard img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}.wb{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.wcard h3{font:600 19px/1.2 var(--serif);margin:0}.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;padding:3px 9px;border-radius:99px;border:1px solid var(--line)}.chip.m{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.tap{margin-top:auto;padding:10px 12px;border-radius:12px;background:var(--cream);border:1px solid var(--line)}.tap p{margin:4px 0 0;font-size:14px}
+.ex{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute)}
+.pc{margin-top:18px;font-size:12px;width:100%}.pc summary{cursor:pointer;color:var(--mute)}.pc ul{margin:8px 0 0;padding-left:18px;line-height:1.6}
 footer{padding:56px 0 64px;border-top:1px solid var(--line);font-size:15px;color:var(--mute)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
@@ -124,19 +132,19 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   </div>
   <div class="slide" aria-roledescription="slide" aria-label="3 of 6">
     <div class="ph" style="background-image:url(img/intro-1.jpg)"></div>
-    <div class="copy"><p class="eyebrow">01 / 04</p><h2 class="title">Great places are easy to miss.</h2><p class="body">Nearly makes sure you don't.</p><p class="credit">Photo: Patrick Baum (Valldemossa, Spain) · CC0 · illustrative</p></div>
+    <div class="copy"><p class="eyebrow">01 / 04</p><h2 class="title">Great places are easy to miss.</h2><p class="body">Nearly makes sure you don't.</p></div>
   </div>
   <div class="slide" aria-roledescription="slide" aria-label="4 of 6">
     <div class="ph" style="background-image:url(img/intro-2.jpg)"></div>
-    <div class="copy"><p class="eyebrow">02 / 04</p><h2 class="title">Tell it what you like.</h2><p class="body">A good bakery, a secondhand bookshop, a quiet park. Pick the kinds of places you'd be glad to find.</p><p class="credit">Photo: Janko Ferlič · CC0 · illustrative</p></div>
+    <div class="copy"><p class="eyebrow">02 / 04</p><h2 class="title">Tell it what you like.</h2><p class="body">A good bakery, a secondhand bookshop, a quiet park. Pick the kinds of places you'd be glad to find.</p></div>
   </div>
   <div class="slide" aria-roledescription="slide" aria-label="5 of 6">
     <div class="ph" style="background-image:url(img/intro-3.jpg)"></div>
-    <div class="copy"><p class="eyebrow">03 / 04</p><h2 class="title">When one is close, you hear about it.</h2><p class="body">A short alert with the place's name and how far it is on foot. Tap it to see the place on the map.</p><p class="credit">Photo: João Silas · CC0 · illustrative</p></div>
+    <div class="copy"><p class="eyebrow">03 / 04</p><h2 class="title">When one is close, you hear about it.</h2><p class="body">A short alert with the place's name and how far it is on foot. Tap it to see the place on the map.</p></div>
   </div>
   <div class="slide" aria-roledescription="slide" aria-label="6 of 7">
     <div class="ph" style="background-image:url(img/intro-4.jpg)"></div>
-    <div class="copy"><p class="eyebrow">04 / 04</p><h2 class="title">Quiet unless it's worth it.</h2><p class="body">A place alerts once, and again only when something changes. Nothing from 10 PM to 8 AM unless you change it. Your exact location stays on your iPhone.</p><p class="credit">Photo: Tim Gouw · CC0 · illustrative</p></div>
+    <div class="copy"><p class="eyebrow">04 / 04</p><h2 class="title">Quiet unless it's worth it.</h2><p class="body">A place alerts once, and again only when something changes. Nothing from 10 PM to 8 AM unless you change it. Your exact location stays on your iPhone.</p></div>
   </div>
   <div class="slide final" aria-roledescription="slide" aria-label="7 of 7">
     <div class="ph" style="background-image:url(img/final.jpg)"></div>
@@ -146,7 +154,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
       <p class="body">Don't walk by what you'd love.</p>
       <div><span class="badge">Coming soon · Now in TestFlight</span></div>
       <div><a class="mail" href="mailto:hello@usenearly.app">hello@usenearly.app</a></div>
-      <p class="credit">Photo: David East · CC0 · illustrative</p>
+      
     </div>
   </div>
 
@@ -157,22 +165,18 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
 </section>
 
 <section id="watch"><div class="wrap">
-  <p class="kicker reveal">What Nearly watches for</p>
-  <h2 class="reveal">The places you'd be glad to find.</h2>
-  <p class="lede reveal">Pick the kinds you love. Nearly keeps an eye out while you walk.</p>
-  <div class="grid">
-    <figure class="tile reveal"><img loading="lazy" src="img/coffee.jpg" alt="Coffee on a café table"><figcaption><b>Coffee</b><small>Photo: Luke Chesser · CC0 · illustrative</small></figcaption></figure>
-    <figure class="tile reveal"><img loading="lazy" src="img/bakery.jpg" alt="Bakery display"><figcaption><b>Bakeries</b><small>Photo: Andy Li · CC0 · illustrative</small></figcaption></figure>
-    <figure class="tile reveal"><img loading="lazy" src="img/bookshop.jpg" alt="Secondhand bookshop"><figcaption><b>Bookshops</b><small>Photo: Andy Li · CC0 · illustrative</small></figcaption></figure>
-    <figure class="tile reveal"><img loading="lazy" src="img/record-shop.jpg" alt="Vinyl records"><figcaption><b>Record shops</b><small>Photo: Fabien Barral · CC0 · illustrative</small></figcaption></figure>
-    <figure class="tile reveal"><img loading="lazy" src="img/vintage.jpg" alt="Vintage clothing"><figcaption><b>Vintage</b><small>Photo: MAKY.OREL · CC0 · illustrative</small></figcaption></figure>
-    <figure class="tile reveal"><img loading="lazy" src="img/market-alt.jpg" alt="Flower market"><figcaption><b>Markets</b><small>Photo: Rudolph.A.Furtado · CC0 · illustrative</small></figcaption></figure>
-    <figure class="tile reveal"><img loading="lazy" src="img/ice-cream.jpg" alt="Ice cream on a beach"><figcaption><b>Ice cream</b><small>Photo: Andy Li · CC0 · illustrative</small></figcaption></figure>
-    <figure class="tile reveal"><img loading="lazy" src="img/gallery.jpg" alt="Art gallery room"><figcaption><b>Galleries</b><small>Photo: Unknown author · Public domain · illustrative</small></figcaption></figure>
-    <figure class="tile reveal"><img loading="lazy" src="img/park.jpg" alt="City park in autumn"><figcaption><b>Parks</b><small>Photo: Wilfredor · CC0 · illustrative</small></figcaption></figure>
-    <figure class="tile reveal"><img loading="lazy" src="img/viewpoint.jpg" alt="City skyline from a viewpoint"><figcaption><b>Viewpoints</b><small>Photo: TomMumuPangPangEmma · CC0 · illustrative</small></figcaption></figure>
-    <figure class="tile reveal"><img loading="lazy" src="img/museum.jpg" alt="Museum gallery"><figcaption><b>Museums</b><small>Photo: The History Wizard of Cambridge · CC0 · illustrative</small></figcaption></figure>
-    <figure class="tile reveal"><img loading="lazy" src="img/landmark.jpg" alt="City hall clock tower"><figcaption><b>Landmarks</b><small>Photo: John Robert McPherson · CC0 · illustrative</small></figcaption></figure>
+  <p class="kicker reveal">Example watches</p>
+  <h2 class="reveal">Say exactly what you want.</h2>
+  <p class="lede reveal">Start from a ready-made watch or build your own. Nearly taps you when a match is close.</p>
+  <div class="wgrid">
+    <article class="wcard reveal"><img loading="lazy" src="img/coffee.jpg" alt="Coffee beans"><div class="wb"><h3>Local coffee roasters</h3><div class="chips"><span class="chip m">Must have · Roasts its own beans</span><span class="chip n">Nice to have · Not a chain</span></div><div class="tap"><span class="ex">Example</span><p>A café that roasts its own beans is a 6-minute walk away.</p></div></div></article>
+    <article class="wcard reveal"><img loading="lazy" src="img/bakery.jpg" alt="Bakery display"><div class="wb"><h3>Sourdough and fresh bread</h3><div class="chips"><span class="chip m">Must have · Bakes sourdough on site</span><span class="chip n">Nice to have · Not a chain</span></div><div class="tap"><span class="ex">Example</span><p>A bakery that bakes its own sourdough is 4 min away. Open until 3.</p></div></div></article>
+    <article class="wcard reveal"><img loading="lazy" src="img/park.jpg" alt="City park"><div class="wb"><h3>Kid-friendly with space to run</h3><div class="chips"><span class="chip m">Must have · Playground</span><span class="chip n">Nice to have · Open space to run</span></div><div class="tap"><span class="ex">Example</span><p>A park with a playground is a 5-minute walk away.</p></div></div></article>
+    <article class="wcard reveal"><img loading="lazy" src="img/ice-cream.jpg" alt="Ice cream cone"><div class="wb"><h3>Great ice cream</h3><div class="chips"><span class="chip m">Must have · Made on site</span><span class="chip n">Nice to have · Not a chain</span></div><div class="tap"><span class="ex">Example</span><p>An ice cream shop that makes its own is 5 min away. Open until 10.</p></div></div></article>
+    <article class="wcard reveal"><img loading="lazy" src="img/viewpoint.jpg" alt="City skyline"><div class="wb"><h3>Hidden-gem viewpoints</h3><div class="chips"><span class="chip m">Must have · Wide open view</span><span class="chip n">Nice to have · Faces west for sunset</span><span class="chip n">Nice to have · Not a big tourist spot</span></div><div class="tap"><span class="ex">Example</span><p>A quiet lookout is 8 min away. Good for sunset tonight.</p></div></div></article>
+    <article class="wcard reveal"><img loading="lazy" src="img/record-shop.jpg" alt="Vinyl records"><div class="wb"><h3>Bookstores and record shops</h3><div class="chips"><span class="chip m">Must have · Not a chain</span><span class="chip n">Nice to have · New or used</span></div><div class="tap"><span class="ex">Example</span><p>An independent record shop is a 3-minute walk away.</p></div></div></article>
+    <article class="wcard reveal"><img loading="lazy" src="img/vintage.jpg" alt="Clothing rack"><div class="wb"><h3>Boutiques</h3><div class="chips"><span class="chip m">Must have · Not a chain</span><span class="chip n">Nice to have · Clothing, jewelry or gifts</span></div><div class="tap"><span class="ex">Example</span><p>A small boutique is 5 min away. Open until 7.</p></div></div></article>
+    <article class="wcard reveal"><img loading="lazy" src="img/market-alt.jpg" alt="Market stall"><div class="wb"><h3>Farm stands and farmers markets</h3><div class="chips"><span class="chip m">Must have · Sold by the people who grew it</span></div><div class="tap"><span class="ex">Example</span><p>A farmers market is 7 min away. Open until 2.</p></div></div></article>
   </div>
 </div></section>
 
@@ -196,7 +200,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-bet
   </div>
 </div></section>
 </main>
-<footer><div class="wrap"><span>© 2026 Nearly</span><a href="mailto:hello@usenearly.app">hello@usenearly.app</a><span>Photos are illustrative, CC0 / public domain via Wikimedia Commons. Story photo: Ray.</span></div></footer>
+<footer><div class="wrap"><span>© 2026 Nearly</span><a href="mailto:hello@usenearly.app">hello@usenearly.app</a><details class="pc"><summary>Photo credits</summary><p style="margin:8px 0 0">Photos are illustrative, CC0 / public domain via Wikimedia Commons. Story photo: Ray.</p><ul><li>story.jpg: Ray</li><li>intro-1.jpg: Patrick Baum (Valldemossa, Spain) · CC0</li><li>intro-2.jpg: Janko Ferlič · CC0</li><li>intro-3.jpg: João Silas · CC0</li><li>intro-4.jpg: Tim Gouw · CC0</li><li>final.jpg: David East · CC0</li><li>coffee.jpg: Luke Chesser · CC0</li><li>bakery.jpg: Andy Li · CC0</li><li>bookshop.jpg: Andy Li · CC0</li><li>record-shop.jpg: Fabien Barral · CC0</li><li>vintage.jpg: MAKY.OREL · CC0</li><li>market-alt.jpg: Rudolph.A.Furtado · CC0</li><li>ice-cream.jpg: Andy Li · CC0</li><li>gallery.jpg: Unknown author · Public domain</li><li>park.jpg: Wilfredor · CC0</li><li>viewpoint.jpg: TomMumuPangPangEmma · CC0</li><li>museum.jpg: The History Wizard of Cambridge · CC0</li><li>landmark.jpg: John Robert McPherson · CC0</li></ul></details></div></footer>
 <script>
 (()=>{const show=document.getElementById('show'),slides=[...show.querySelectorAll('.slide')],dashBox=show.querySelector('.dashes'),live=document.getElementById('live');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,DUR=6500;let i=0,t=null,start=0,left=DUR,hold=new Set();
