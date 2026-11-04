@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nearly — Don't walk by what you'd love</title>
+<meta name="description" content="Nearly taps you on the shoulder when a place you'd love is a short walk away.">
+<meta name="theme-color" content="#0F0D0B">
+<link rel="icon" href="icon.png">
+<style>
+:root{--cream:#F3EDE1;--cream2:#EDE4D3;--ink:#1A1814;--mute:#5a554c;--line:#d9d0c0;--accent:#B8341F;--accent-d:#F07A62;--door:#D6402B;
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--dur:6500ms}
+*{box-sizing:border-box}html,body{margin:0}body{font:17px/1.6 var(--sans);color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent-d);outline-offset:3px;border-radius:6px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* ---------- slideshow ---------- */
+.show{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:#0F0D0B;color:#fff;touch-action:pan-y;user-select:none}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.2s ease,visibility 0s 1.2s}
+.slide.on{opacity:1;visibility:visible;transition:opacity 1.2s ease,visibility 0s}
+.slide .ph{position:absolute;inset:-4%;background:center/cover no-repeat;transform:scale(1.04) translate3d(0,0,0);will-change:transform}
+.slide.on .ph{animation:kb calc(var(--dur) + 1800ms) ease-out forwards}
+@keyframes kb{from{transform:scale(1.04) translate3d(0,1.2%,0)}to{transform:scale(1.13) translate3d(-1.2%,-1.2%,0)}}
+.slide:nth-child(even).on .ph{animation-name:kb2}
+@keyframes kb2{from{transform:scale(1.13) translate3d(1%,-1%,0)}to{transform:scale(1.04) translate3d(0,0,0)}}
+.slide::before,.slide::after{content:"";position:absolute;left:0;right:0;pointer-events:none}
+.slide::before{top:0;height:30%;background:linear-gradient(rgba(0,0,0,.55),transparent)}
+.slide::after{bottom:0;height:72%;background:linear-gradient(transparent,rgba(8,6,5,.55) 35%,rgba(8,6,5,.9))}
+.copy{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 28px calc(120px + env(safe-area-inset-bottom));max-width:760px}
+@media(min-width:900px){.copy{left:max(64px,calc((100vw - 1180px)/2));padding-bottom:132px}}
+.copy>*{opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.slide.on .copy>*{opacity:1;transform:none}
+.slide.on .copy>*:nth-child(2){transition-delay:.12s}.slide.on .copy>*:nth-child(3){transition-delay:.24s}.slide.on .copy>*:nth-child(n+4){transition-delay:.36s}
+.eyebrow{font:600 13px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--accent-d);margin:0 0 18px}
+.title{font:600 clamp(40px,10.5vw,84px)/1.02 var(--serif);letter-spacing:-.015em;margin:0 0 18px;text-wrap:balance}
+.body{font-size:clamp(17px,2.2vw,20px);line-height:1.55;color:rgba(255,255,255,.88);margin:0 0 10px;max-width:36em;text-wrap:pretty}
+.story .title{font-size:clamp(36px,8vw,64px)}
+.story .body{font:400 clamp(16px,1.9vw,19px)/1.6 var(--serif);color:rgba(255,255,255,.9)}
+.sig{font:italic 400 22px/1.3 var(--serif);margin:16px 0 0}.sig a{color:var(--accent-d);font:600 15px var(--sans);font-style:normal;text-decoration:none;margin-left:8px}
+.credit{font-size:11px;color:rgba(255,255,255,.5);margin-top:20px!important;letter-spacing:.02em}
+.top{position:absolute;z-index:5;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:calc(18px + env(safe-area-inset-top)) 24px 0}
+@media(min-width:900px){.top{padding:28px max(64px,calc((100vw - 1180px)/2)) 0}}
+.mark{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font:600 22px var(--serif);letter-spacing:-.01em}
+.mark img{width:30px;height:30px;border-radius:8px}
+.pill{font:600 13px var(--sans);color:#fff;padding:9px 15px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);text-decoration:none}
+.dashes{position:absolute;z-index:5;left:28px;right:28px;bottom:calc(48px + env(safe-area-inset-bottom));display:flex;gap:6px;max-width:420px}
+@media(min-width:900px){.dashes{left:max(64px,calc((100vw - 1180px)/2));bottom:60px}}
+.dash{flex:1;height:22px;padding:10px 0;border:0;background:none;cursor:pointer}
+.dash i{display:block;height:2px;border-radius:2px;background:rgba(255,255,255,.28);overflow:hidden}
+.dash i b{display:block;height:100%;width:0;background:#fff}
+.dash.done i b{width:100%}
+.dash.cur i b{animation:fill var(--dur) linear forwards}
+.paused .dash.cur i b{animation-play-state:paused}
+@keyframes fill{to{width:100%}}
+.nav{position:absolute;z-index:4;top:0;bottom:0;width:22%;border:0;background:none;cursor:pointer}.nav.prev{left:0}.nav.next{right:0}
+@media(max-width:899px){.scrollcue{display:none}}
+.scrollcue{position:absolute;z-index:5;right:28px;bottom:calc(44px + env(safe-area-inset-bottom));color:rgba(255,255,255,.7);font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+@media(min-width:900px){.scrollcue{right:max(64px,calc((100vw - 1180px)/2));bottom:56px}}
+.final .copy{text-align:left}
+.appicon{width:88px;height:88px;border-radius:21px;box-shadow:0 12px 40px rgba(0,0,0,.45);margin-bottom:22px}
+.badge{display:inline-flex;align-items:center;gap:10px;margin:14px 0 4px;padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.35);font:600 14px var(--sans);background:rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent-d);box-shadow:0 0 0 4px rgba(240,122,98,.25)}
+.mail{display:inline-block;margin-top:14px;color:#fff;font-weight:600;text-decoration:none;border-bottom:1px solid var(--accent-d);padding-bottom:2px}
+/* ---------- below fold ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media(min-width:900px){.wrap{padding:0 64px}}
+section{padding:96px 0}
+.kicker{font:600 13px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+h2{font:600 clamp(34px,6vw,56px)/1.06 var(--serif);letter-spacing:-.015em;margin:0 0 18px;text-wrap:balance}
+.lede{font-size:19px;color:var(--mute);max-width:34em;margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:48px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(4,1fr);gap:16px}}
+.tile{position:relative;margin:0;border-radius:14px;overflow:hidden;aspect-ratio:4/5;background:var(--cream2)}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.tile:hover img{transform:scale(1.06)}
+.tile figcaption{position:absolute;inset:auto 0 0 0;padding:40px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff}
+.tile b{display:block;font:600 21px/1.15 var(--serif)}
+.tile small{display:block;font-size:10px;opacity:.65;margin-top:4px;line-height:1.3}
+.steps{display:grid;gap:0;margin-top:48px;border-top:1px solid var(--line)}
+@media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr);gap:40px;border:0}}
+.step{padding:28px 0;border-bottom:1px solid var(--line)}
+@media(min-width:760px){.step{border-bottom:0;border-top:1px solid var(--ink)}}
+.step .n{font:italic 400 44px/1 var(--serif);color:var(--accent)}
+.step h3{font:600 26px/1.2 var(--serif);margin:14px 0 8px}
+.step p{margin:0;color:var(--mute)}
+.alert{display:flex;gap:12px;align-items:flex-start;max-width:420px;margin-top:40px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.65);border:1px solid var(--line);box-shadow:0 18px 50px rgba(60,40,20,.12)}
+.alert img{width:38px;height:38px;border-radius:9px}.alert b{display:block;font-size:15px}.alert span{font-size:15px;color:var(--mute)}
+.alert small{float:right;color:var(--mute);font-size:12px}
+.cream{background:var(--cream2)}
+.quote{font:400 clamp(26px,4.2vw,40px)/1.3 var(--serif);max-width:24em;margin:0;text-wrap:balance}
+.quote em{color:var(--accent);font-style:italic}
+.privacy{display:grid;gap:18px;margin-top:40px}
+@media(min-width:760px){.privacy{grid-template-columns:repeat(3,1fr);gap:32px}}
+.privacy div{border-top:1px solid var(--ink);padding-top:14px}.privacy b{font:600 20px var(--serif);display:block;margin-bottom:4px}.privacy p{margin:0;color:var(--mute)}
+footer{padding:56px 0 64px;border-top:1px solid var(--line);font-size:15px;color:var(--mute)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+@media (prefers-color-scheme:dark){:root{--cream:#17140F;--cream2:#1F1B15;--ink:#EDE6D8;--mute:#b3ab9c;--line:#3a342a;--accent:#F07A62}.alert{background:rgba(255,255,255,.05)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.slide.on .copy>*{opacity:1;transform:none}.dash.cur i b{width:100%}}
+</style>
+</head>
+<body>
+<main>
+<section class="show" id="show" aria-roledescription="carousel" aria-label="Nearly introduction" style="padding:0">
+  <div class="top"><a class="mark" href="#show"><img src="icon.png" alt="">Nearly</a><a class="pill" href="#watch">Learn more</a></div>
+
+  <div class="slide story" data-i="0" aria-roledescription="slide" aria-label="1 of 6">
+    <div class="ph" style="background-image:url(img/story.jpg)"></div>
+    <div class="copy">
+      <p class="eyebrow">Our story</p>
+      <h1 class="title">A Shot in the Dark</h1>
+      <p class="body">My son's a coffee guy. While I was in Vienna for work, he mentioned that a world champion barista has a shop there, though neither of us could remember his name. Then, by pure luck, I came across the place, steps from my hotel.</p>
+      <p class="sig">— Ray <a href="https://www.instagram.com/fatrayeats/" rel="noopener">@fatrayeats</a></p>
+    </div>
+  </div>
+  <div class="slide story" data-i="1" aria-roledescription="slide" aria-label="2 of 6">
+    <div class="ph" style="background-image:url(img/story.jpg);background-position:center 30%"></div>
+    <div class="copy">
+      <p class="eyebrow">Our story</p>
+      <p class="body">That got me thinking. I'm a big foodie, and I'd love a local friend with me wherever I go, the kind who knows every nook and cranny and says "you can't miss this." Luck shouldn't be the only way to find those places. So, selfishly, I built Nearly for myself, then decided to share it. Tell it what you love, and it taps you on the shoulder, like that local friend who won't let you miss the best spots.</p>
+      <p class="sig">— Ray <a href="https://www.instagram.com/fatrayeats/" rel="noopener">@fatrayeats</a></p>
+    </div>
+  </div>
+  <div class="slide" aria-roledescription="slide" aria-label="3 of 6">
+    <div class="ph" style="background-image:url(img/intro-1.jpg)"></div>
+    <div class="copy"><p class="eyebrow">01 / 04</p><h2 class="title">Great places are easy to miss.</h2><p class="body">Nearly makes sure you don't.</p><p class="credit">Photo: Patrick Baum (Valldemossa, Spain) · CC0 · illustrative</p></div>
+  </div>
+  <div class="slide" aria-roledescription="slide" aria-label="4 of 6">
+    <div class="ph" style="background-image:url(img/intro-2.jpg)"></div>
+    <div class="copy"><p class="eyebrow">02 / 04</p><h2 class="title">Tell it what you like.</h2><p class="body">A good bakery, a secondhand bookshop, a quiet park. Pick the kinds of places you'd be glad to find.</p><p class="credit">Photo: Janko Ferlič · CC0 · illustrative</p></div>
+  </div>
+  <div class="slide" aria-roledescription="slide" aria-label="5 of 6">
+    <div class="ph" style="background-image:url(img/intro-3.jpg)"></div>
+    <div class="copy"><p class="eyebrow">03 / 04</p><h2 class="title">When one is close, you hear about it.</h2><p class="body">A short alert with the place's name and how far it is on foot. Tap it to see the place on the map.</p><p class="credit">Photo: João Silas · CC0 · illustrative</p></div>
+  </div>
+  <div class="slide" aria-roledescription="slide" aria-label="6 of 7">
+    <div class="ph" style="background-image:url(img/intro-4.jpg)"></div>
+    <div class="copy"><p class="eyebrow">04 / 04</p><h2 class="title">Quiet unless it's worth it.</h2><p class="body">A place alerts once, and again only when something changes. Nothing from 10 PM to 8 AM unless you change it. Your exact location stays on your iPhone.</p><p class="credit">Photo: Tim Gouw · CC0 · illustrative</p></div>
+  </div>
+  <div class="slide final" aria-roledescription="slide" aria-label="7 of 7">
+    <div class="ph" style="background-image:url(img/final.jpg)"></div>
+    <div class="copy">
+      <img class="appicon" src="icon.png" alt="Nearly app icon">
+      <h2 class="title">Nearly</h2>
+      <p class="body">Don't walk by what you'd love.</p>
+      <div><span class="badge">Coming soon · Now in TestFlight</span></div>
+      <div><a class="mail" href="mailto:hello@usenearly.app">hello@usenearly.app</a></div>
+      <p class="credit">Photo: David East · CC0 · illustrative</p>
+    </div>
+  </div>
+
+  <button class="nav prev" aria-label="Previous slide"></button><button class="nav next" aria-label="Next slide"></button>
+  <div class="dashes" role="tablist" aria-label="Choose slide"></div>
+  <a class="scrollcue" href="#watch">Scroll ↓</a>
+  <p class="sr" aria-live="polite" id="live"></p>
+</section>
+
+<section id="watch"><div class="wrap">
+  <p class="kicker reveal">What Nearly watches for</p>
+  <h2 class="reveal">The places you'd be glad to find.</h2>
+  <p class="lede reveal">Pick the kinds you love. Nearly keeps an eye out while you walk.</p>
+  <div class="grid">
+    <figure class="tile reveal"><img loading="lazy" src="img/coffee.jpg" alt="Coffee on a café table"><figcaption><b>Coffee</b><small>Photo: Luke Chesser · CC0 · illustrative</small></figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="img/bakery.jpg" alt="Bakery display"><figcaption><b>Bakeries</b><small>Photo: Andy Li · CC0 · illustrative</small></figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="img/bookshop.jpg" alt="Secondhand bookshop"><figcaption><b>Bookshops</b><small>Photo: Andy Li · CC0 · illustrative</small></figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="img/record-shop.jpg" alt="Vinyl records"><figcaption><b>Record shops</b><small>Photo: Fabien Barral · CC0 · illustrative</small></figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="img/vintage.jpg" alt="Vintage clothing"><figcaption><b>Vintage</b><small>Photo: MAKY.OREL · CC0 · illustrative</small></figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="img/market-alt.jpg" alt="Flower market"><figcaption><b>Markets</b><small>Photo: Rudolph.A.Furtado · CC0 · illustrative</small></figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="img/ice-cream.jpg" alt="Ice cream on a beach"><figcaption><b>Ice cream</b><small>Photo: Andy Li · CC0 · illustrative</small></figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="img/gallery.jpg" alt="Art gallery room"><figcaption><b>Galleries</b><small>Photo: Unknown author · Public domain · illustrative</small></figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="img/park.jpg" alt="City park in autumn"><figcaption><b>Parks</b><small>Photo: Wilfredor · CC0 · illustrative</small></figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="img/viewpoint.jpg" alt="City skyline from a viewpoint"><figcaption><b>Viewpoints</b><small>Photo: TomMumuPangPangEmma · CC0 · illustrative</small></figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="img/museum.jpg" alt="Museum gallery"><figcaption><b>Museums</b><small>Photo: The History Wizard of Cambridge · CC0 · illustrative</small></figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="img/landmark.jpg" alt="City hall clock tower"><figcaption><b>Landmarks</b><small>Photo: John Robert McPherson · CC0 · illustrative</small></figcaption></figure>
+  </div>
+</div></section>
+
+<section class="cream" id="how"><div class="wrap">
+  <p class="kicker reveal">How it works</p>
+  <h2 class="reveal">Three steps, then forget about it.</h2>
+  <div class="steps">
+    <div class="step reveal"><div class="n">1</div><h3>Tell it what you like.</h3><p>A good bakery, a secondhand bookshop, a quiet park.</p></div>
+    <div class="step reveal"><div class="n">2</div><h3>Choose how far you'd walk.</h3><p>A few minutes or a proper wander. Wherever you are, near work or near home.</p></div>
+    <div class="step reveal"><div class="n">3</div><h3>Get a tap on the shoulder.</h3><p>A short alert with the place's name and how far it is on foot.</p></div>
+  </div>
+  <div class="alert reveal" aria-label="Example alert"><img src="icon.png" alt=""><div><small>now</small><b>Nearly</b><span>A secondhand bookshop is a 4-minute walk away.</span></div></div>
+</div></section>
+
+<section class="cream" style="padding-top:0"><div class="wrap">
+  <p class="quote reveal">Luck shouldn't be the only way to find those places. <em>Nearly</em> is the local friend who won't let you miss the best spots.</p>
+  <div class="privacy">
+    <div class="reveal"><b>Quiet by design</b><p>A place alerts once, and again only when something changes.</p></div>
+    <div class="reveal"><b>Night hours off</b><p>Nothing from 10 PM to 8 AM unless you change it.</p></div>
+    <div class="reveal"><b>Your location stays put</b><p>Your exact location stays on your iPhone.</p></div>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>© 2026 Nearly</span><a href="mailto:hello@usenearly.app">hello@usenearly.app</a><span>Photos are illustrative, CC0 / public domain via Wikimedia Commons. Story photo: Ray.</span></div></footer>
+<script>
+(()=>{const show=document.getElementById('show'),slides=[...show.querySelectorAll('.slide')],dashBox=show.querySelector('.dashes'),live=document.getElementById('live');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,DUR=6500;let i=0,t=null,start=0,left=DUR,hold=new Set();
+slides.forEach((s,k)=>{s.setAttribute('aria-label',(k+1)+' of '+slides.length);const b=document.createElement('button');b.className='dash';b.setAttribute('role','tab');b.setAttribute('aria-label','Slide '+(k+1));b.innerHTML='<i><b></b></i>';b.onclick=()=>go(k);dashBox.appendChild(b)});
+const dashes=[...dashBox.children];
+function render(){slides.forEach((s,k)=>{s.classList.toggle('on',k===i);s.setAttribute('aria-hidden',k!==i)});
+dashes.forEach((d,k)=>{d.classList.toggle('done',k<i);d.classList.remove('cur');d.setAttribute('aria-selected',k===i)});
+void dashes[i].offsetWidth;dashes[i].classList.add('cur');live.textContent='Slide '+(i+1)+' of '+slides.length}
+function go(k){i=(k+slides.length)%slides.length;render();left=DUR;arm()}
+function arm(){clearTimeout(t);if(reduce||hold.size)return;start=Date.now();t=setTimeout(()=>go(i+1),left)}
+function pause(r){if(!hold.size&&t){clearTimeout(t);t=null;left=Math.max(300,left-(Date.now()-start))}hold.add(r);show.classList.add('paused')}
+function resume(r){hold.delete(r);if(!hold.size){show.classList.remove('paused');arm()}}
+show.querySelector('.prev').onclick=()=>go(i-1);show.querySelector('.next').onclick=()=>go(i+1);
+show.addEventListener('mouseenter',()=>pause('hover'));show.addEventListener('mouseleave',()=>resume('hover'));
+show.addEventListener('focusin',()=>pause('focus'));show.addEventListener('focusout',()=>resume('focus'));
+let x0=null;show.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;pause('touch')},{passive:true});
+show.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x0;resume('touch');if(Math.abs(dx)>40)go(i+(dx<0?1:-1));x0=null},{passive:true});
+document.addEventListener('keydown',e=>{if(show.getBoundingClientRect().bottom<80)return;if(e.key==='ArrowRight')go(i+1);if(e.key==='ArrowLeft')go(i-1)});
+document.addEventListener('visibilitychange',()=>document.hidden?pause('hidden'):resume('hidden'));
+new IntersectionObserver(([en])=>en.isIntersecting?resume('offscreen'):pause('offscreen')).observe(show);
+if(reduce)show.classList.add('paused');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const q=new URLSearchParams(location.search).get('s');render();if(q)go(+q);else arm();})();
+</script>
+</body>
+</html>
